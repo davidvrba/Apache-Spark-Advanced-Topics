@@ -4,6 +4,7 @@ pip install --upgrade pip
 
 # Python libraries used in the training.
 pip install py4j
+pip install pyspark==4.1.1
 pip install jsonschema
 pip install numpy==2.1.3
 pip install pandas==2.2.3
