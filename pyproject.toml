@@ -1,0 +1,45 @@
+# Poetry configuration for the Apache Spark Advanced Topics training.
+#
+# Mirrors the Python dependencies installed by `conf/setup_user.sh` so the
+# environment can be reproduced locally (e.g. for development / testing of
+# the notebooks) instead of going through the EC2 setup script.
+#
+# Notes:
+#   * Apache Spark itself (the distribution at $SPARK_HOME) is installed by
+#     `conf/setup_user.sh`. The `pyspark` PyPI package below provides the
+#     Python bindings — if you also want the Scala/JVM side, run the wget +
+#     tar steps from `setup_user.sh` to install Spark 4.0.1 locally.
+#   * Iceberg is not on PyPI. The `iceberg-spark-runtime-4.0_2.13` JAR is
+#     placed in `$SPARK_HOME/jars/` by `setup_user.sh`. You only need that
+#     step (or `--packages org.apache.iceberg:iceberg-spark-runtime-4.0_2.13:1.10.1`
+#     on the Spark session) if you want to run the Iceberg notebook.
+
+[tool.poetry]
+name = "apache-spark-advanced-topics"
+version = "0.1.0"
+description = "Hands-on problems and solutions for the Apache Spark Advanced Topics training prepared by David Vrba."
+authors = ["David Vrba <vrba.dave@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+
+# Spark + Spark ecosystem
+pyspark = "4.1.1"
+py4j = "*"
+
+# Data libraries used in the notebooks
+numpy = "2.1.3"
+pandas = "2.2.3"
+pyarrow = "19.0.1"
+matplotlib = "3.10.1"
+scipy = "1.15.2"
+
+# Misc
+jsonschema = "*"
+jupyter = "*"
+
+[build-system]
+requires = ["poetry-core>=1.8.0"]
+build-backend = "poetry.core.masonry.api"
